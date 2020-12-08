@@ -74,10 +74,18 @@ if (layout === 'verticalPresentation') {
 }
 
 session.connect(token, function (err) {
+  var screenPublisher;
   if (err) {
     alert(err.message || err); // eslint-disable-line no-alert
   }
   session.publish(publisher);
+  setTimeout(function () {
+    screenPublisher = OT.initPublisher(null, { videoSource: 'screen' });
+    session.publish(screenPublisher);
+  }, 10000);
+  setTimeout(function () {
+    session.unpublish(screenPublisher);
+  }, 25000);
 });
 
 publisher.on('streamCreated', function () {
@@ -156,7 +164,8 @@ $(document).ready(function () {
 
     if (archiveID) {
       $.post('archive/' + archiveID + '/layout', {
-        type: newLayoutClass
+        type: newLayoutClass,
+        screenshareType: newLayoutClass,
       }).done(function () {
         console.log('Archive layout updated.');
       }).fail(function (jqXHR) {

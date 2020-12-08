@@ -109,7 +109,10 @@ app.post('/start', function (req, res) {
     outputMode: outputMode
   };
   if (outputMode === 'composed') {
-    archiveOptions.layout = { type: 'horizontalPresentation' };
+    archiveOptions.layout = {
+      type: 'bestFit',
+      screenshareType: 'horizontalPresentation'
+    };
   }
   opentok.startArchive(app.get('sessionId'), archiveOptions, function (err, archive) {
     if (err) {
@@ -140,9 +143,10 @@ app.get('/delete/:archiveId', function (req, res) {
 
 app.post('/archive/:archiveId/layout', function (req, res) {
   var archiveId = req.param('archiveId');
-  var type = req.body.type;
+  var type = 'bestFit'; // req.body.type;
+  var screenshareType = req.body.screenshareType;
   app.set('layout', type);
-  opentok.setArchiveLayout(archiveId, type, null, function (err) {
+  opentok.setArchiveLayout(archiveId, type, null, screenshareType, function (err) {
     if (err) {
       return res.send(500, 'Could not set layout ' + type + '. Error: ' + err.message);
     }
