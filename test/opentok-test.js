@@ -1558,6 +1558,61 @@ describe('#setBroadcastLayout', function () {
   });
 });
 
+describe('#setArchiveLayout', function () {
+  var opentok = new OpenTok('APIKEY', 'APISECRET');
+  var ARCHIVE_ID = 'ARCHIVE_ID';
+  var CUSTOM_LAYOUT_TYPE = 'custom';
+  var BEST_FIT_LAYOUT_TYPE = 'bestFit';
+  var HORIZONTAL_LAYOUT_TYPE = 'horizontalPresentation';
+  var STYLESHEET = 'stylesheet';
+
+  function mockSetArchiveLayout(archiveId, status) {
+    var body;
+    if (status) {
+      body = JSON.stringify({
+        message: 'error message'
+      });
+    }
+    nock('https://api.opentok.com')
+      .put('/v2/project/APIKEY/archive/' + archiveId + '/layout')
+      .reply(status || 200, body);
+  }
+
+  afterEach(function () {
+    nock.cleanAll();
+  });
+
+  it('succeeds given valid parameters', function (done) {
+    mockSetArchiveLayout(ARCHIVE_ID);
+    opentok.setArchiveLayout(ARCHIVE_ID, BEST_FIT_LAYOUT_TYPE, function (err) {
+      expect(err).to.be.null;
+      done();
+    });
+  });
+
+  it('succeeds given custom layout and stylesheet', function (done) {
+    mockSetArchiveLayout(ARCHIVE_ID);
+    opentok.setArchiveLayout(ARCHIVE_ID, CUSTOM_LAYOUT_TYPE, STYLESHEET, function (err) {
+      expect(err).to.be.null;
+      done();
+    });
+  });
+
+  it('succeeds given a screenshareType', function (done) {
+    mockSetArchiveLayout(ARCHIVE_ID);
+    opentok.setArchiveLayout(
+      ARCHIVE_ID,
+      BEST_FIT_LAYOUT_TYPE,
+      null,
+      HORIZONTAL_LAYOUT_TYPE,
+      function (err) {
+        expect(err).to.be.null;
+        done();
+      }
+    );
+  });
+});
+
 describe('getStream', function () {
   var opentok = new OpenTok('APIKEY', 'APISECRET');
   var SESSIONID = '1_MX4xMDB-MTI3LjAuMC4xflR1ZSBKYW4gMjggMTU6NDg6NDAgUFNUIDIwMTR-MC43NjAyOTYyfg';
