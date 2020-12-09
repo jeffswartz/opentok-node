@@ -1506,7 +1506,9 @@ describe('#listBroadcasts', function () {
 describe('#setBroadcastLayout', function () {
   var opentok = new OpenTok('APIKEY', 'APISECRET');
   var BROADCAST_ID = 'BROADCAST_ID';
-  var LAYOUT_TYPE = 'custom';
+  var CUSTOM_LAYOUT_TYPE = 'custom';
+  var BEST_FIT_LAYOUT_TYPE = 'bestFit';
+  var HORIZONTAL_LAYOUT_TYPE = 'horizontalPresentation';
   var STYLESHEET = 'stylesheet';
 
   function mockSetBroadcastLayout(broadcastId, status) {
@@ -1527,10 +1529,32 @@ describe('#setBroadcastLayout', function () {
 
   it('succeeds given valid parameters', function (done) {
     mockSetBroadcastLayout(BROADCAST_ID);
-    opentok.setBroadcastLayout(BROADCAST_ID, LAYOUT_TYPE, STYLESHEET, function (err) {
+    opentok.setBroadcastLayout(BROADCAST_ID, BEST_FIT_LAYOUT_TYPE, function (err) {
       expect(err).to.be.null;
       done();
     });
+  });
+
+  it('succeeds given custom layout and stylesheet', function (done) {
+    mockSetBroadcastLayout(BROADCAST_ID);
+    opentok.setBroadcastLayout(BROADCAST_ID, CUSTOM_LAYOUT_TYPE, STYLESHEET, function (err) {
+      expect(err).to.be.null;
+      done();
+    });
+  });
+
+  it('succeeds given a screenshareType', function (done) {
+    mockSetBroadcastLayout(BROADCAST_ID);
+    opentok.setBroadcastLayout(
+      BROADCAST_ID,
+      BEST_FIT_LAYOUT_TYPE,
+      null,
+      HORIZONTAL_LAYOUT_TYPE,
+      function (err) {
+        expect(err).to.be.null;
+        done();
+      }
+    );
   });
 });
 

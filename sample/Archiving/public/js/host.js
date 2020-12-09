@@ -165,7 +165,7 @@ $(document).ready(function () {
     if (archiveID) {
       $.post('archive/' + archiveID + '/layout', {
         type: newLayoutClass,
-        screenshareType: newLayoutClass,
+        screenshareType: newLayoutClass
       }).done(function () {
         console.log('Archive layout updated.');
       }).fail(function (jqXHR) {
