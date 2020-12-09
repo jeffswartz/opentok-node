@@ -30,7 +30,7 @@ Visit <http://localhost:3000/host> in your browser. Then, mute the audio on your
 (to prevent feedback) and load the  <http://localhost:3000/participant> page in another browser tab
 (or in a browser on another computer). The two client pages are connected in an OpenTok session.
 
-In the host page, set broadast options -- maximum duration and resolution -- and then click the **Start Broadcast** button to start the live streaming broadcast of the session. (The maximum
+In the host page, set broadcast options -- maximum duration and resolution -- and then click the **Start Broadcast** button to start the live streaming broadcast of the session. (The maximum
 duration setting is optional. The default maximum duration of a broadcast is 2 hours
 (7200 seconds). 
 
