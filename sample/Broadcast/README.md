@@ -73,6 +73,21 @@ Note that the broadcast uses best fit layout when there is no screen-sharing str
 See the code in the index.js file, which sets `layout` to `'bestFit'` and sets
 `screenshareType` to either `horizontalPresentation` or `verticalPresentation`.
 
+```
+app.post('/broadcast/:broadcastId/layout', function (req, res) {
+  var broadcastId = req.param('broadcastId');
+  var screenshareType = req.body.type;
+  app.set('layout', req.body.type);
+  if (broadcastId) {
+    opentok.setBroadcastLayout(broadcastId, 'bestFit', null, screenshareType, function (err) {
+      if (err) {
+        return res.send(500, 'Could not set screenshareType ' + screenshareType + '. Error: ' + err.message);
+      }
+      return res.send(200, 'OK');
+    });
+  }
+});
+```
 
 ## Walkthrough
 
