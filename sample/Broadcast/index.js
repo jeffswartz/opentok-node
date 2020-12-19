@@ -98,7 +98,10 @@ app.post('/start', function (req, res) {
   var broadcastOptions = {
     maxDuration: Number(req.param('maxDuration')) || undefined,
     resolution: req.param('resolution'),
-    layout: req.param('layout'),
+    layout: {
+      type: 'bestFit',
+      screenshareType: req.param('layout')
+    },
     outputs: {
       hls: {}
     }
@@ -125,12 +128,12 @@ app.get('/stop/:broadcastId', function (req, res) {
 
 app.post('/broadcast/:broadcastId/layout', function (req, res) {
   var broadcastId = req.param('broadcastId');
-  var type = req.body.type;
-  app.set('layout', type);
+  var screenshareType = req.body.type;
+  app.set('layout', req.body.type);
   if (broadcastId) {
-    opentok.setBroadcastLayout(broadcastId, type, null, function (err) {
+    opentok.setBroadcastLayout(broadcastId, 'bestFit', null, screenshareType, function (err) {
       if (err) {
-        return res.send(500, 'Could not set layout ' + type + '. Error: ' + err.message);
+        return res.send(500, 'Could not set screenshareType ' + screenshareType + '. Error: ' + err.message);
       }
       return res.send(200, 'OK');
     });

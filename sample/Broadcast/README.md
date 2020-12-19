@@ -43,6 +43,37 @@ In the host page, click the **Toggle Layout** button to switch the layout of the
 horizontal and vertical presentation. Click any stream to make it the focus (larger) video in
 the layout.
 
+## Notes for testing this special version of the apply
+
+** This version is intended for internally Vonage Testing against the tbdev environment. **
+
+No effort has been made to make the client UI reflect what is happening in the archive.
+
+To test:
+
+1. Start the app (`node index.js`).
+
+3. Open http://localhost:3000/participant in a browser. (You may want to disable your computer speaker.)
+
+3. Open http://localhost:3000/host in another browser tab. Click the * Start Broadcast * button.
+
+4. After 10 seconds, allow access to screen sharing in the host.
+
+7. In Safari, open the http://localhost:3000/ page and click the Broadcast URL link.
+   Wait for the screen-sharing stream to appear.
+
+5. Click the Toggle Layout button a couple of times.
+
+  Note that the broadcast uses vertical or horizontal presentation when there is a screen-sharing stream.
+
+6. Stop screen sharing.
+
+Note that the broadcast uses best fit layout when there is no screen-sharing stream.
+
+See the code in the index.js file, which sets `layout` to `'bestFit'` and sets
+`screenshareType` to either `horizontalPresentation` or `verticalPresentation`.
+
+
 ## Walkthrough
 
 This demo application uses the same frameworks and libraries as the HelloWorld sample. If you have
