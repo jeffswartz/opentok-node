@@ -28,6 +28,37 @@ $ node index.js
 Visit <http://localhost:3000> in your browser. You can now create new archives (either as a host or
 as a participant) and also play archives that have already been created.
 
+## Notes for testing this special version of the apply
+
+** This version is intended for internally Vonage Testing against the tbdev environment. **
+
+No effort has been made to make the client UI reflect what is happening in the archive.
+
+To test:
+
+1. Start the app (`node index.js`).
+
+3. Open http://localhost:3000/participant in a browser. (You may want to disable your computer speaker.)
+
+3. Open http://localhost:3000/host in another browser tab. Click the * Start Archive * button.
+
+4. After 10 seconds, allow access to screensharing in the host.
+
+5. Click the Toggle Layout button a couple of times.
+
+6. Stop screen sharing.
+
+7. Wait a few seconds and stop the archive.
+
+8. Open the http://localhost:3000/history page. When the archive is available, click the link to view it.
+
+Note that the archive uses best fit layout when there is no screen-sharing stream. And it uses
+either vertical or horizontal presentation when there is a screen-sharing stream.
+
+See the code in the index.js file, which sets `layout` to `'bestFit'` and sets
+`screenshareType` to either `horizontalPresentation` or `verticalPresentation`.
+
+
 ## Walkthrough
 
 This demo application uses the same frameworks and libraries as the HelloWorld sample. If you have
