@@ -28,9 +28,9 @@ $ node index.js
 Visit <http://localhost:3000> in your browser. You can now create new archives (either as a host or
 as a participant) and also play archives that have already been created.
 
-## Notes for testing this special version of the apply
+## Notes for testing this tbdev test version of the app
 
-** This version is intended for internally Vonage Testing against the tbdev environment. **
+**This version is intended for internally Vonage Testing against the tbdev environment.**
 
 No effort has been made to make the client UI reflect what is happening in the archive.
 
@@ -40,9 +40,9 @@ To test:
 
 3. Open http://localhost:3000/participant in a browser. (You may want to disable your computer speaker.)
 
-3. Open http://localhost:3000/host in another browser tab. Click the * Start Archive * button.
+3. Open http://localhost:3000/host in another browser tab. Click the *Start Archive* button.
 
-4. After 10 seconds, allow access to screensharing in the host.
+4. After 10 seconds, allow access to screen sharing in the host.
 
 5. Click the Toggle Layout button a couple of times.
 

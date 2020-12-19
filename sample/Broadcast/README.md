@@ -43,9 +43,9 @@ In the host page, click the **Toggle Layout** button to switch the layout of the
 horizontal and vertical presentation. Click any stream to make it the focus (larger) video in
 the layout.
 
-## Notes for testing this special version of the apply
+## Notes for testing this tbdev test version of the app
 
-** This version is intended for internally Vonage Testing against the tbdev environment. **
+**This version is intended for internally Vonage Testing against the tbdev environment.**
 
 No effort has been made to make the client UI reflect what is happening in the archive.
 
@@ -55,7 +55,7 @@ To test:
 
 3. Open http://localhost:3000/participant in a browser. (You may want to disable your computer speaker.)
 
-3. Open http://localhost:3000/host in another browser tab. Click the * Start Broadcast * button.
+3. Open http://localhost:3000/host in another browser tab. Click the *Start Broadcast* button.
 
 4. After 10 seconds, allow access to screen sharing in the host.
 
