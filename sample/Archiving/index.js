@@ -31,7 +31,7 @@ function init() {
 }
 
 // Initialize OpenTok
-opentok = new OpenTok(apiKey, apiSecret, 'https://anvil-tbdev.opentok.com');
+opentok = new OpenTok(apiKey, apiSecret);
 
 // Create a session and store it in the express app
 opentok.createSession({ mediaMode: 'routed' }, function (err, session) {
